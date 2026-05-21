@@ -13,17 +13,17 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('solicitud_id')
-                  ->constrained()
+                  ->constrained('solicitudes')
                   ->onDelete('cascade');
 
             $table->foreignId('medicamento_id')
                   ->nullable()
-                  ->constrained()
+                  ->constrained('medicamentos')
                   ->onDelete('cascade');
 
             $table->foreignId('material_id')
                   ->nullable()
-                  ->constrained()
+                  ->constrained('materiales')
                   ->onDelete('cascade');
 
             $table->integer('cantidad');
