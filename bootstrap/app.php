@@ -10,8 +10,12 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    //registramos los middlewares para poder utilizar el de director y enfermeria
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'director' => \App\Http\Middleware\DirectorMiddleware::class,
+            'enfermeria' => \App\Http\Middleware\EnfermeriaMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
