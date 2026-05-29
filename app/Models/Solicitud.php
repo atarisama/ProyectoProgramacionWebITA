@@ -7,20 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Solicitud extends Model
 {
     protected $table = 'solicitudes';
-
     protected $fillable = [
         'user_id',
-        'estado',
-        'fecha'
+        'fecha',
+        'estado'
     ];
 
-    public function user()
+    public function medicamentos()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function detalles()
-    {
-        return $this->hasMany(DetalleSolicitud::class, 'solicitud_id');
+        return $this->belongsToMany(
+            Medicamento::class,
+            'detalle_solicitud'
+        )->withPivot('cantidad');
     }
 }
