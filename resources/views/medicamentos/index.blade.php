@@ -72,12 +72,25 @@
         <!-- TABLA -->
         <div class="bg-white rounded-xl shadow overflow-hidden p-6">
 
+            <!-- BUSCADOR CONECTADO AL SERVIDOR -->
             <div class="mb-6">
+                <form action="{{ route('medicamentos.index') }}" method="GET" class="flex gap-2">
+                    <input type="text"
+                           name="buscar"
+                           value="{{ request('buscar') }}"
+                           placeholder="Buscar medicamento por nombre..."
+                           class="border border-gray-300 p-3 rounded-lg w-full outline-none focus:ring-2 focus:ring-blue-500">
+                    
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-medium transition">
+                        Buscar
+                    </button>
 
-                <input type="text"
-                       placeholder="Buscar medicamento..."
-                       class="border border-gray-300 p-3 rounded-lg w-full">
-
+                    @if(request('buscar'))
+                        <a href="{{ route('medicamentos.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 rounded-lg font-medium flex items-center justify-center transition">
+                            Limpiar
+                        </a>
+                    @endif
+                </form>
             </div>
 
 
@@ -189,7 +202,7 @@
                             <td colspan="4"
                                 class="p-8 text-center text-gray-400">
 
-                                No hay medicamentos registrados.
+                                No se encontraron medicamentos con ese nombre.
 
                             </td>
 

@@ -8,11 +8,19 @@ use App\Models\Medicamento;
 class MedicamentoController extends Controller
 {
     /**
-     * Muestra la lista de medicamentos.
+     * Muestra la lista de medicamentos (con opción de búsqueda).
      */
-    public function index()
+    public function index(Request $request)
     {
-        $medicamentos = Medicamento::all();
+        // Captura lo que el usuario escribió en el cuadro de búsqueda
+        $buscar = $request->input('buscar');
+
+        // Consulta a la base de datos usando Eloquent
+        // Si hay texto, filtra por nombre; si está vacío, trae todos los registros
+        $medicamentos = Medicamento::when($buscar, function ($query, $buscar) {
+            return $query->where('nombre', 'LIKE', "%{$buscar}%");
+        })->get();
+
         return view('medicamentos.index', compact('medicamentos'));
     }
 
