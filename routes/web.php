@@ -43,6 +43,10 @@ Route::patch('/director/pedidos/{solicitud}/estado',
     ->middleware(['auth', 'director'])
     ->name('director.pedidos.status');
 
+Route::get('/director/ingresos', [DirectorController::class, 'ingresos'])->name('director.ingresos');
+
+
+
 Route::get('/enfermeria/dashboard',
     [EnfermeriaController::class, 'index'])
     ->middleware(['auth', 'enfermeria'])
