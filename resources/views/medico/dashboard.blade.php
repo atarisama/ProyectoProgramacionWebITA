@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="flex min-h-screen bg-gray-50">
@@ -26,7 +26,7 @@
         <div class="bg-white rounded-3xl shadow border border-gray-200 p-8">
             <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <p class="text-sm uppercase tracking-[0.24em] text-blue-600 font-semibold">Panel de Enfermería</p>
+                    <p class="text-sm uppercase tracking-[0.24em] text-blue-600 font-semibold">Panel Médico</p>
                     <h1 class="mt-4 text-4xl font-bold text-gray-900">Bienvenido, {{ auth()->user()->name }}</h1>
                     <p class="mt-2 text-gray-600">Gestiona solicitudes, consulta inventario y revisa reportes desde aquí.</p>
                 </div>

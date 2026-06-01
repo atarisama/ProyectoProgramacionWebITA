@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Solicitud extends Model
 {
@@ -12,6 +13,11 @@ class Solicitud extends Model
         'fecha',
         'estado'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function medicamentos()
     {

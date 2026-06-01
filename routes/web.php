@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\EnfermeriaController;
+use App\Http\Controllers\MedicoController;
 
 use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\PedidoController;
@@ -27,13 +28,30 @@ Route::get('/director/dashboard',
     ->middleware(['auth', 'director'])
     ->name('director.dashboard');
 
+Route::get('/director/pedidos',
+    [PedidoController::class, 'directorIndex'])
+    ->middleware(['auth', 'director'])
+    ->name('director.pedidos');
+
+Route::get('/director/reportes',
+    [ReporteController::class, 'directorIndex'])
+    ->middleware(['auth', 'director'])
+    ->name('director.reportes');
+
+Route::patch('/director/pedidos/{solicitud}/estado',
+    [PedidoController::class, 'directorUpdateStatus'])
+    ->middleware(['auth', 'director'])
+    ->name('director.pedidos.status');
 
 Route::get('/enfermeria/dashboard',
     [EnfermeriaController::class, 'index'])
     ->middleware(['auth', 'enfermeria'])
     ->name('enfermeria.dashboard');
 
-
+Route::get('/medico/dashboard',
+    [MedicoController::class, 'index'])
+    ->middleware(['auth', 'medico'])
+    ->name('medico.dashboard');
 
 Route::get('/dashboard', function () {
 
@@ -114,7 +132,6 @@ Route::middleware('auth')->group(function () {
         ->name('pedidos.store');
 
 
-
     // ==========================
     // REPORTES
     // ==========================
@@ -122,8 +139,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reportes',
         [ReporteController::class,'index'])
         ->name('reportes.index');
-
-
 
 });
 

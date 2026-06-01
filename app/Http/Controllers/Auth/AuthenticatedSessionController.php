@@ -28,6 +28,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = $request->user();
+
+        if ($user && $user->rol === 'director') {
+            return redirect()->route('director.pedidos');
+        }
+
+        if ($user && ($user->rol === 'medico' || $user->rol === 'enfermero')) {
+            return redirect()->route('pedidos.index');
+        }
+
         return redirect()->route('medicamentos.index');
     }
 
