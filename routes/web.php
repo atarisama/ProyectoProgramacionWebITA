@@ -10,6 +10,7 @@ use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\IngresoController;
 
 
 
@@ -43,9 +44,25 @@ Route::patch('/director/pedidos/{solicitud}/estado',
     ->middleware(['auth', 'director'])
     ->name('director.pedidos.status');
 
-Route::get('/director/ingresos', [DirectorController::class, 'ingresos'])->name('director.ingresos');
+Route::get('/director/ingresos',
+    [IngresoController::class, 'index'])
+    ->middleware(['auth', 'director'])
+    ->name('director.ingresos');
 
+Route::post('/director/ingresos',
+    [IngresoController::class, 'store'])
+    ->middleware(['auth', 'director'])
+    ->name('director.ingresos.store');
 
+Route::patch('/director/ingresos/{ingreso}',
+    [IngresoController::class, 'update'])
+    ->middleware(['auth', 'director'])
+    ->name('director.ingresos.update');
+
+Route::delete('/director/ingresos/{ingreso}',
+    [IngresoController::class, 'destroy'])
+    ->middleware(['auth', 'director'])
+    ->name('director.ingresos.destroy');
 
 Route::get('/enfermeria/dashboard',
     [EnfermeriaController::class, 'index'])

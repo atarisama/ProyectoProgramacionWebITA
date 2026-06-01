@@ -16,6 +16,10 @@
                class="flex items-center p-3 rounded-lg font-semibold {{ request()->routeIs('director.pedidos') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100' }}">
                 Pedidos
             </a>
+            <a href="{{ route('director.ingresos') }}"
+               class="flex items-center p-3 rounded-lg font-semibold {{ request()->routeIs('director.ingresos') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100' }}">
+                Ingresos
+            </a>
             <a href="{{ route('director.reportes') }}"
                class="flex items-center p-3 rounded-lg font-semibold {{ request()->routeIs('director.reportes') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100' }}">
                 Reportes
