@@ -3,24 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Solicitud extends Model
 {
     protected $table = 'solicitudes';
-
     protected $fillable = [
         'user_id',
-        'estado',
-        'fecha'
+        'fecha',
+        'estado'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function detalles()
+    public function medicamentos()
     {
-        return $this->hasMany(DetalleSolicitud::class, 'solicitud_id');
+        return $this->belongsToMany(
+            Medicamento::class,
+            'detalle_solicitud'
+        )->withPivot('cantidad');
     }
 }
